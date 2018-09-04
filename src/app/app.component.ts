@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Game } from './models/game.model';
+import { ISeller } from './models/seller.model';
+import { GameStockService } from './services/game-stock.service';
 
 @Component({
   selector: "app-root",
@@ -8,31 +10,24 @@ import { Game } from './models/game.model';
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  title = "Displaying Collections Demo";
+  title = "User Interactions Demo";
   games: Game[];
-  // game: Game;
+  show = true;
+  selectedGameInfo: string;
+  sellers: ISeller[];
 
-  constructor() {}
+  constructor(private gameStockService: GameStockService) {}
 
   ngOnInit() {
-    this.games = [
-      new Game(
-        "Super Mario Bros",
-        "13 September 1985",
-        // tslint:disable-next-line:max-line-length
-        "http://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/virtual_console_nintendo_3ds_7/SI_3DSVC_SuperMarioBros_image1280w.jpg"
-      ),
-      new Game(
-        "Legend of Zelda",
-        "21 February 1986",
-        // tslint:disable-next-line:max-line-length
-        "http://www.hobbyconsolas.com/sites/hobbyconsolas.com/public/styles/main_element/public/media/image/2013/06/227201-analisis-legend-zelda-oracle-ages/seasons.jpg?itok=A8pOGd_f"
-      ),
-      new Game(
-        "Sonic",
-        "26 June 1981",
-        "https://i.ytimg.com/vi/dfFd7Bu6xnc/hqdefault.jpg"
-      )
-    ];
+    this.games = this.gameStockService.getGames();
+  }
+
+  gameChangeHandler($event: any) {
+    const sellers = this.gameStockService.getGameSellers($event);
+    const selectedGame = this.gameStockService.getGame($event);
+    this.selectedGameInfo = `${
+      selectedGame.name
+    }, Age: ${selectedGame.getYearFromRelease()}`;
+    this.sellers = sellers && sellers.length > 0 ? sellers : [];
   }
 }

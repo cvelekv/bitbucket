@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Game } from '../../models/game.model';
 
@@ -10,7 +10,14 @@ import { Game } from '../../models/game.model';
 export class GameSummaryComponent implements OnInit {
   @Input()
   game: Game;
+  @Output()
+  gameChange: EventEmitter<string> = new EventEmitter<string>();
+
   constructor() {}
 
   ngOnInit() {}
+  selectedGame(gameName: string) {
+    console.log(gameName);
+    this.gameChange.emit(gameName);
+  }
 }
