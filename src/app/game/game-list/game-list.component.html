@@ -1,10 +1,10 @@
 <div class="container">
   <h1>{{title}}</h1>
   <div class="game-container">
-    <div *ngFor="let game of games">
+    <div *ngFor="let game of games" [routerLink]="['/games', game.name]">
       <app-game-summary (gameChange)="gameChangeHandler($event)" [game]=game></app-game-summary>
     </div>
 
   </div>
-  <app-game-sellers [gameName]="selectedGameInfo" [sellers]="sellers"></app-game-sellers>
+  <!-- <app-game-sellers [gameName]="selectedGameInfo" [sellers]="sellers"></app-game-sellers> -->
 </div>

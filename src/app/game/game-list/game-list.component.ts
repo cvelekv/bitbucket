@@ -24,13 +24,13 @@ export class GameListComponent implements OnInit {
     this.sellers = sellers && sellers.length > 0 ? sellers : [];
   }
 
-  private mapper(formValues: any): Game {
-    return new Game(
-      formValues.name,
-      formValues.daterelease,
-      formValues.imageurl
-    );
-  }
+  // private mapper(formValues: any): Game {
+  //   return new Game(
+  //     formValues.name,
+  //     formValues.daterelease,
+  //     formValues.imageurl
+  //   );
+  // }
   ngOnInit() {
     this.loadGames();
   }

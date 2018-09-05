@@ -12,6 +12,7 @@ import { GameSummaryComponent } from './game/game-summary/game-summary.component
 import { CreateSellerComponent } from './seller/create-seller/create-seller.component';
 import { GameStockService } from './services/game-stock.service';
 import { SellerCategoryService } from './services/seller-category.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SellerCategoryService } from './services/seller-category.service';
     GameSellersComponent,
     CreateGameComponent,
     GameListComponent,
-    CreateSellerComponent
+    CreateSellerComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
