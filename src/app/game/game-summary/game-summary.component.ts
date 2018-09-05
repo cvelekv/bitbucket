@@ -4,8 +4,7 @@ import { Game } from '../../models/game.model';
 
 @Component({
   selector: "app-game-summary",
-  templateUrl: "./game-summary.component.html",
-  styleUrls: ["./game-summary.component.css"]
+  templateUrl: "./game-summary.component.html"
 })
 export class GameSummaryComponent implements OnInit {
   @Input()

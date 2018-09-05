@@ -75,4 +75,7 @@ export class GameStockService {
   getGameSellers(name: string): ISeller[] {
     return this.getGame(name).sellers || null;
   }
+  addGame(game: Game): void {
+    GAMES.push(game);
+  }
 }

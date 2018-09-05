@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private gameStockService: GameStockService) {}
 
   ngOnInit() {
-    this.games = this.gameStockService.getGames();
+    this.loadGames();
   }
 
   gameChangeHandler($event: any) {
@@ -29,5 +29,17 @@ export class AppComponent implements OnInit {
       selectedGame.name
     }, Age: ${selectedGame.getYearFromRelease()}`;
     this.sellers = sellers && sellers.length > 0 ? sellers : [];
+  }
+
+  createGameEventHandler($event: any) {
+    const game = this.mapper($event);
+    this.gameStockService.addGame(game);
+    this.loadGames();
+  }
+  private loadGames() {
+    this.games = this.gameStockService.getGames();
+  }
+  private mapper(formValues: any): Game {
+    return new Game(formValues.name, formValues.daterelease, formValues.imageurl);
   }
 }
